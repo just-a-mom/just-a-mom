@@ -240,34 +240,7 @@ export default function Home() {
     p.el.style.fontSize = rand(1.5, 2.5) + "rem";
       p.el.style.color = pick(colors);
       p.el.style.fontWeight = Math.random() < 0.25 ? "700" : "400";
-      p.el.style.opacity = String(rand(0.05, 0.11));
-      p.rot = rand(-28, 28);
-      p.wobble = rand(0, Math.PI * 2);
-      p.wobbleAmp = rand(0, 0.18);
-      p.wobbleSpd = rand(0.012, 0.035);
-      const dir = pick(dirs), spd = rand(0.8, 1.8);
-      p.dir = dir;
-      if (dir==="up")     { p.x=rand(0,W*.9); p.y=init?rand(-H,H):H+60; p.vx=rand(-0.06,0.06); p.vy=-spd; }
-      else if (dir==="down")  { p.x=rand(0,W*.9); p.y=init?rand(-H,H):-60; p.vx=rand(-0.06,0.06); p.vy=spd; }
-      else if (dir==="left")  { p.x=init?rand(-W,W):W+60; p.y=rand(0,H); p.vx=-spd; p.vy=rand(-0.06,0.06); }
-      else if (dir==="right") { p.x=init?rand(-W,W):-60; p.y=rand(0,H); p.vx=spd;  p.vy=rand(-0.06,0.06); }
-      else if (dir==="diagUL"){ p.x=init?rand(0,W):W+60; p.y=init?rand(0,H):H+60; p.vx=-spd*.7; p.vy=-spd*.7; }
-      else                    { p.x=init?rand(0,W):-60;  p.y=init?rand(0,H):H+60; p.vx=spd*.7;  p.vy=-spd*.7; }
-    };
-
-    const bgOff = (p: BgParticle) => {
-      const m = 80;
-      if (p.dir==="up"    && p.y < -m) return true;
-      if (p.dir==="down"  && p.y > H+m) return true;
-      if (p.dir==="left"  && p.x < -m) return true;
-      if (p.dir==="right" && p.x > W+m) return true;
-      if (p.dir==="diagUL"&& (p.x < -m || p.y < -m)) return true;
-      if (p.dir==="diagUR"&& (p.x > W+m || p.y < -m)) return true;
-      return false;
-    };
-
-    for (let i = 0; i < BG_COUNT; i++) {
-      const el = document.createElement("div");
+           p.el.style.opacity = "0.07"; const el = document.createElement("div");
       el.style.cssText = "position:absolute;left:0;top:0;pointer-events:none;line-height:1.35;white-space:nowrap;will-change:transform,opacity;";
       bgEl.appendChild(el);
       const p = { el, x:0, y:0, vx:0, vy:0, rot:0, dir:"up", wobble:0, wobbleAmp:0, wobbleSpd:0 };
